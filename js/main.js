@@ -34,24 +34,36 @@ switch (selectEspecialidad) {
 };
 
 while (selectDia<6){
-if (selectDia === 1) {
-    selectDia = "LUNES"
-    selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-}else if (selectDia === 2) {
-    selectDia = "MARTES"
-    selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-}else if (selectDia=== 3) {
-    selectDia = "MIERCOLES"
-    selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-}else if (selectDia=== 4) {
-    selectDia = "JUEVES"
-    selectDia = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-}else if (selectDia === 5) {
-    selectDia = "VIERNES"
-    selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-}else {
-    alert ("Lo lamento debe seleccionar alguno de los valores relacionado con el dia. Para volver a empezar seleccione F5")
-};
+    switch (selectDia){
+        case 1 :
+        selectDia = "LUNES"
+        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
+        break;
+        
+        case 2 :
+        selectDia = "MARTES"
+        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
+        break;
+    
+        case 3 :
+        selectDia = "MIERCOLES"
+        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
+        break;
+    
+        case 4 :
+        selectDia = "JUEVES"
+        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
+        break;
+    
+        case 5 :
+        selectDia = "VIERNES"
+        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
+        break;
+    
+        default: 
+        alert ("Lo lamento debe seleccionar alguno de los valores relacionado con el dia. Para volver a empezar seleccione F5")
+        break;
+    }
 while(selectHora<6){
 switch (selectHora) {
     case 1:
