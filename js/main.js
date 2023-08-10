@@ -10,6 +10,9 @@ function error (){
     alert (nombrePaciente + " debe seleccionar el valor numerico de su seleccion de la lista, para volver a empezar oprima F5")
 }
 
+if (isNaN(selectEspecialidad)) {
+    error();
+} else {
 while (selectEspecialidad <5){
 switch (selectEspecialidad) {
     case 1:
@@ -31,8 +34,11 @@ switch (selectEspecialidad) {
     default:
         alert ("Lo lamento debe seleccionar alguno de los valores relacionado con la especialidad. Para volver a empezar seleccione F5");
         break;
-};
+}};
 
+if (isNaN(selectDia)) {
+    error();
+} else {
 while (selectDia<6){
     switch (selectDia){
         case 1 :
@@ -63,7 +69,10 @@ while (selectDia<6){
         default: 
         alert ("Lo lamento debe seleccionar alguno de los valores relacionado con el dia. Para volver a empezar seleccione F5")
         break;
-    }
+    }    
+    if (isNaN(selectHora)) {
+        error();
+    } else {    
 while(selectHora<6){
 switch (selectHora) {
     case 1:
@@ -86,7 +95,7 @@ switch (selectHora) {
 };
 tunroOtorgado ()}}};
 
-if (selectEspecialidad>=5){ error()  
-}else if (selectDia>=6) { error()
-}else if (selectHora>=6) { error()
-};
+
+if (selectEspecialidad>=5){error()}
+else if (selectDia>=6) {error()}
+else if (selectHora>=6) {error()}}};
