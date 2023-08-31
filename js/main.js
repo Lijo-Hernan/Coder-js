@@ -1,101 +1,189 @@
-let nombrePaciente = prompt("Ingrese su nombre");
-let selectEspecialidad = parseInt(prompt("Bienvenido " + nombrePaciente +" Seleccione una especialidad :\n\n1. Clinica medica\n2. Traumatologia\n3. Ginecologia\n4. Cirugia \n\nSeleccione usando el numero de lista"));
-let selectDia 
-let selectHora
+let nombrePaciente = prompt("Bienvenido a nuestro gestor de encuentros, por favor ingrese su Nombre para comenzar").toUpperCase();
 
-function tunroOtorgado () {
-    alert (nombrePaciente + " su turno quedo agendado con " +selectEspecialidad + " el dia " + selectDia + " a las " + selectHora );
-    };
-function error (){
-    alert (nombrePaciente + " debe seleccionar el valor numerico de su seleccion de la lista, para volver a empezar oprima F5")
-}
+const dias = [
+    {
+        dia: "Lunes",
+        id: 1,
+    },
+    {
+        dia: "Martes",
+        id: 2,
+    },
+    {
+        dia: "Miercoles",
+        id: 3,
+    },
+    {
+        dia: "Jueves",
+        id: 4,
+    },
+    {
+        dia: "Viernes",
+        id: 5,
+    },
 
-if (isNaN(selectEspecialidad)) {
-    error();
-} else {
-while (selectEspecialidad <5){
+]
+
+const horarios = [
+    {
+        hora: "8.00",
+        id: 1,
+    },
+    {
+        hora: "8.30",
+        id: 2,
+    },
+    {
+        hora: "9.00",
+        id: 3,
+    },
+    {
+        hora: "9.30",
+        id: 4,
+    },
+    {
+        hora: "10.00",
+        id: 5,
+    },
+    {
+        hora: "10.30",
+        id: 6,
+    },
+    {
+        hora: "11.00",
+        id: 7,
+    },
+    {
+        hora: "11.30",
+        id: 8,
+    },
+    {
+        hora: "12.00",
+        id: 9,
+    },
+]
+
+const medicos = [
+    {
+        dr: "Dr. Bruno H",
+        especialidad: "CLINICA MEDICA",
+    },
+    {
+        dr: "Dra. Prado S.",
+        especialidad: "GINECOLOGIA",
+    },
+    {
+        dr: "Dra. Rozas S.",
+        especialidad: "TRAUMATOLOGIA",
+    },
+    {
+        dr: "Dr. Gilardoni A.",
+        especialidad: "CIRUGIA GENERAL",
+    },
+    {
+        dr: "Dr. Sassano A.",
+        especialidad: "UROLOGIA",
+    }
+]
+
+const especialidades = [
+    {
+        nombre: "Clinica Medica",
+        id: 1,
+    },
+    {
+        nombre: "Ginecologia",
+        id: 2,
+    },
+    {
+        nombre: "Traumatologia",
+        id: 3,
+    },
+    {
+        nombre: "Cirugia General",
+        id: 4,
+    },
+    {
+        nombre: "Urologia",
+        id: 5,
+    },
+]
+
+function tunroOtorgado() {
+    alert(`${nombrePaciente} su turno quedo agendado con el ${medico} de ${selectEspecialidad} el dia ${selectDia} a las ${selectHora}`);
+};
+
+let listaEspecialidad = especialidades.map((el, index) => (index + 1) + ". " + el.nombre).join("\n")
+let listadias = dias.map((el, index) => (index + 1) + "." + el.dia).join("\n");
+let listahorarios = horarios.map((el) => el.hora + " hs.").join("\n");
+let selectEspecialidad = prompt("Bienvenido " + nombrePaciente + " estas son nuestros servicios:\n\n" + listaEspecialidad + "\n\nSeleccione una especialidad:").toUpperCase();
+
 switch (selectEspecialidad) {
-    case 1:
+    case "CLINICA MEDICA":
         selectEspecialidad = "CLINICA MEDICA"
-        selectDia = parseInt(prompt( "Seleccione un dia de su preferencia:\n1. Lunes \n2. Martes \n3. Miercoles \n4. Jueves \n5. Viernes"));
+        selectDia = prompt(`Seleccione un dia de su preferencia: \n\n${listadias}`).toUpperCase();
         break;
-    case 2:
+    case "TRAUMATOLOGIA":
         selectEspecialidad = "TRAUMATOLOGIA"
-        selectDia = parseInt(prompt( "Seleccione un dia de su preferencia:\n1. Lunes \n2. Martes \n3. Miercoles \n4. Jueves \n5. Viernes"));
+        selectDia = prompt(`Seleccione un dia de su preferencia: \n\n${listadias}`).toUpperCase();
         break;
-    case 3:
+    case "GINECOLOGIA":
         selectEspecialidad = "GINECOLOGIA"
-        selectDia = parseInt(prompt( "Seleccione un dia de su preferencia:\n1. Lunes \n2. Martes \n3. Miercoles \n4. Jueves \n5. Viernes"));
+        selectDia = prompt(`Seleccione un dia de su preferencia: \n\n${listadias}`).toUpperCase();
         break;
-    case 4:
-        selectEspecialidad = "CIRUGIA"
-        selectDia = parseInt(prompt( "Seleccione un dia de su preferencia:\n1. Lunes \n2. Martes \n3. Miercoles \n4. Jueves \n5. Viernes"));
+    case "CIRUGIA GENERAL":
+        selectEspecialidad = "CIRUGIA GENERAL"
+        selectDia = prompt(`Seleccione un dia de su preferencia: \n\n${listadias}`).toUpperCase();
         break;
-    default:
-        alert ("Lo lamento debe seleccionar alguno de los valores relacionado con la especialidad. Para volver a empezar seleccione F5");
-        break;
-}};
-
-if (isNaN(selectDia)) {
-    error();
-} else {
-while (selectDia<6){
-    switch (selectDia){
-        case 1 :
-        selectDia = "LUNES"
-        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-        break;
-        
-        case 2 :
-        selectDia = "MARTES"
-        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-        break;
-    
-        case 3 :
-        selectDia = "MIERCOLES"
-        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-        break;
-    
-        case 4 :
-        selectDia = "JUEVES"
-        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-        break;
-    
-        case 5 :
-        selectDia = "VIERNES"
-        selectHora = parseInt(prompt( "Seleccione un dia de su preferencia de Horario:\n\n1. 8.30 \n2. 9.00 \n3. 9.30 \n4. 10.00 \n5. 10.30"));
-        break;
-    
-        default: 
-        alert ("Lo lamento debe seleccionar alguno de los valores relacionado con el dia. Para volver a empezar seleccione F5")
-        break;
-    }    
-    if (isNaN(selectHora)) {
-        error();
-    } else {    
-while(selectHora<6){
-switch (selectHora) {
-    case 1:
-        selectHora = "8.30 hs"
-        break;
-    case 2:
-        selectHora = "9.00 hs"
-        break;
-    case 3:
-        selectHora = "9.30 hs"
-        break;
-    case 4:
-        selectHora = "10.00 hs"
-        break;
-    case 5:
-        selectHora = "10.30 hs"
+    case "UROLOGIA":
+        selectEspecialidad = "UROLOGIA"
+        selectDia = prompt(`Seleccione un dia de su preferencia: \n\n${listadias}`).toUpperCase();
         break;
     default:
+        alert("Lo lamento debe seleccionar una especialidad de la lista. Para volver a empezar seleccione F5");
         break;
 };
-tunroOtorgado ()}}};
+
+// const medicolistado = medicos.find(medico=>medicos.especialidad === selectEspecialidad);
+
+const medicoFiltrado = medicos.filter(profesional => medicos.especialidad === selectEspecialidad);
+
+const medico = medicoFiltrado.map(profesional => medicos.dr);
+
+switch (selectDia) {
+    case "LUNES":
+        selectDia = "LUNES"
+        selectHora = prompt(`Seleccione un horario de su preferencia: \n\n${listahorarios}`);
+        break;
+
+    case "MARTES":
+        selectDia = "MARTES"
+        selectHora = prompt(`Seleccione un horario de su preferencia: \n\n${listahorarios}`);
+        break;
+
+    case "MIERCOLES":
+        selectDia = "MIERCOLES"
+        selectHora = prompt(`Seleccione un horario de su preferencia: \n\n${listahorarios}`);
+        break;
+
+    case "JUEVES":
+        selectDia = "JUEVES"
+        selectHora = prompt(`Seleccione un horario de su preferencia: \n\n${listahorarios}`);
+        break;
+
+    case "VIERNES":
+        selectDia = "VIERNES"
+        selectHora = prompt(`Seleccione un horario de su preferencia: \n\n${listahorarios}`);
+        break;
+
+    default:
+        alert("Lo lamento debe seleccionar algun dia de la lista. Para volver a empezar seleccione F5")
+        break;
+}
 
 
-if (selectEspecialidad>=5){error()}
-else if (selectDia>=6) {error()}
-else if (selectHora>=6) {error()}}};
+if (listahorarios.includes(selectHora)) {
+    tunroOtorgado()
+} else {
+    alert("Lo lamento debe seleccionar algun horario de la lista. Para volver a empezar seleccione F5")
+}
