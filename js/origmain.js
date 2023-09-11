@@ -1,21 +1,54 @@
-let nombrePaciente
-let apellidoPaciente
+let nombrePaciente = prompt(`Bienvenido a nuestro gestor de encuentros, por favor ingrese su Nombre para comenzar`).toUpperCase();
 
-let formulario = document.getElementById("datosPaciente");
+const dias = [
+    {
+        dia: "Lunes",
+    },
+    {
+        dia: "Martes",
+    },
+    {
+        dia: "Miercoles",
+    },
+    {
+        dia: "Jueves",
+    },
+    {
+        dia: "Viernes",
+    },
 
-formulario.addEventListener("submit", function (event) {
-    event.preventDefault()
-    nombrePaciente = document.getElementById("nombre").value;
-    apellidoPaciente = document.getElementById("apellido").value;
+]
 
-    sessionStorage.setItem("nombre", nombrePaciente);
-    sessionStorage.setItem("apellido", apellidoPaciente);
+const horarios = [
+    {
+        hora: `8.00`,
+    },
+    {
+        hora: "8.30",
+    },
+    {
+        hora: "9.00",
+    },
+    {
+        hora: "9.30",
+    },
+    {
+        hora: "10.00",
+    },
+    {
+        hora: "10.30",
+    },
+    {
+        hora: "11.00",
+    },
+    {
+        hora: "11.30",
+    },
+    {
+        hora: "12.00",
+    },
+]
 
-});
-
-const especialidades = ["Clinica Medica", "Ginecologia", "Traumatologia", "Cirugia General", "Urologia"]
-const dias = ["Lunes", "Martes","Miercoles", "Jueves", "Viernes"]
-const horarios = [`8.00`, "8.30", "9.00", "9.30", "10.00", "10.30", "11.00", "11.30", "12.00"]
 const medicos = [
     {
         dr: "Dr. Bruno H",
@@ -39,32 +72,29 @@ const medicos = [
     }
 ]
 
+const especialidades = [
+    {
+        nombre: "Clinica Medica",
+        id: 1,
+    },
+    {
+        nombre: "Ginecologia",
+        id: 2,
+    },
+    {
+        nombre: "Traumatologia",
+        id: 3,
+    },
+    {
+        nombre: "Cirugia General",
+        id: 4,
+    },
+    {
+        nombre: "Urologia",
+        id: 5,
+    },
+]
 
-// if (nombrePaciente !==undefined && apellidoPaciente !==undefined) {
-
-let ulEspecialidad = document.getElementById("listaEspecialidad");
-
-ulEspecialidad.innerHTML = "<h3>Seleccione una especialidad</h3><br>"
-
-especialidades.forEach(function(especialidad,index) {
-    let selectEspecialidad = document.createElement("input");
-    selectEspecialidad.type= "radio";
-    selectEspecialidad.name= "especialidad";
-    selectEspecialidad.value= "especialidad" + (index + 1);
-
-    let label = document.createElement("label");
-    label.textContent= especialidad;
-
-    ulEspecialidad.appendChild(selectEspecialidad);
-    ulEspecialidad.appendChild(label);
-    ulEspecialidad.appendChild(document.createElement("br"));
-});
-//}
-
-
-
-
-/*
 function tunroOtorgado() {
     alert(`${nombrePaciente} su turno quedo agendado con ${medico} de ${selectEspecialidad} el dia ${selectDia} a las ${selectHora}`);
 };
@@ -146,4 +176,4 @@ if  (errorHorario){
 } else {
     alert("Lo lamento debe seleccionar algun horario de la lista. Para volver a empezar seleccione F5")
 }
-*/
+
