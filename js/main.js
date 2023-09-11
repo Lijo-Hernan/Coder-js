@@ -1,17 +1,29 @@
-let nombrePaciente
-let apellidoPaciente
+const arrayPaciente = []
+
 
 let formulario = document.getElementById("datosPaciente");
 
-formulario.addEventListener("submit", function (event) {
-    event.preventDefault()
-    nombrePaciente = document.getElementById("nombre").value;
-    apellidoPaciente = document.getElementById("apellido").value;
+formulario.addEventListener("submit", function (e) {
+    e.preventDefault()
+
+    let nombrePaciente = document.getElementById("nombre").value;
+    let apellidoPaciente = document.getElementById("apellido").value;
+
+
+    function agregarPaciente(nombre, apellido) {
+        const paciente1 = {
+            nombre: nombrePaciente,
+            apellido: apellidoPaciente,
+        };
+        arrayPaciente.push(paciente1);
+    }
 
     sessionStorage.setItem("nombre", nombrePaciente);
     sessionStorage.setItem("apellido", apellidoPaciente);
 
 });
+
+
 
 const especialidades = ["Clinica Medica", "Ginecologia", "Traumatologia", "Cirugia General", "Urologia"]
 const dias = ["Lunes", "Martes","Miercoles", "Jueves", "Viernes"]
@@ -40,7 +52,7 @@ const medicos = [
 ]
 
 
-// if (nombrePaciente !==undefined && apellidoPaciente !==undefined) {
+// if (paciente1.nombre !=undefined && paciente1.apellido !=undefined) {
 
 let ulEspecialidad = document.getElementById("listaEspecialidad");
 
