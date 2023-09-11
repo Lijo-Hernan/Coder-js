@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <title>Document</title>
+    <title>Gestos de turnos</title>
 </head>
+
 <body>
     <h1>BIENVENIDOS</h1>
+    <h2>Gestor de encuentros</h2>
+
+    <form action="" id="datosPaciente" class="formu1">
+        <div class="formu1__datos">
+            <label for="nombre">NOMBRE </label><input type="text" id="nombre" placeholder="nombre">
+            <label for="apellido">APELLIDO </label><input type="text" id="apellido" placeholder="apellido">
+        </div>
+        <div class="formu1__ingreso">
+            <input type="submit" value="Continuar" class="formu1__submit">
+            <input type="reset" value="Borrar" class="formu1__reset">
+        </div>
+    </form>
+
+    <ul id="listaEspecialidad" class="listaEspecialidad">
+
+    </ul>
 
     <script src="js/main.js"></script>
 </body>
+
 </html>
