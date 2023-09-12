@@ -1,28 +1,28 @@
-const arrayPaciente = []
-
+let arrayPaciente = []
 
 let formulario = document.getElementById("datosPaciente");
 
 formulario.addEventListener("submit", function (e) {
     e.preventDefault()
 
-    let nombrePaciente = document.getElementById("nombre").value;
-    let apellidoPaciente = document.getElementById("apellido").value;
-
-
-    function agregarPaciente(nombre, apellido) {
-        const paciente1 = {
-            nombre: nombrePaciente,
-            apellido: apellidoPaciente,
-        };
-        arrayPaciente.push(paciente1);
-    }
+    nombrePaciente = document.getElementById("nombre").value;
+    apellidoPaciente = document.getElementById("apellido").value;
 
     sessionStorage.setItem("nombre", nombrePaciente);
     sessionStorage.setItem("apellido", apellidoPaciente);
 
+    agregarPaciente(nombrePaciente, apellidoPaciente);
+
 });
 
+function agregarPaciente(nombre, apellido) {
+    const paciente1 = {
+        nombre,
+        apellido,
+    };
+    arrayPaciente.push(paciente1);
+    mostrarEspecialidades()
+}
 
 
 const especialidades = ["Clinica Medica", "Ginecologia", "Traumatologia", "Cirugia General", "Urologia"]
@@ -51,8 +51,9 @@ const medicos = [
     }
 ]
 
+function mostrarEspecialidades () {
 
-// if (paciente1.nombre !=undefined && paciente1.apellido !=undefined) {
+if (arrayPaciente.length > 0) {
 
 let ulEspecialidad = document.getElementById("listaEspecialidad");
 
@@ -71,7 +72,7 @@ especialidades.forEach(function(especialidad,index) {
     ulEspecialidad.appendChild(label);
     ulEspecialidad.appendChild(document.createElement("br"));
 });
-//}
+}}
 
 
 
