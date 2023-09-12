@@ -1,30 +1,4 @@
-let arrayPaciente = []
-
-let formulario = document.getElementById("datosPaciente");
-
-formulario.addEventListener("submit", function (e) {
-    e.preventDefault()
-
-    nombrePaciente = document.getElementById("nombre").value;
-    apellidoPaciente = document.getElementById("apellido").value;
-
-    sessionStorage.setItem("nombre", nombrePaciente);
-    sessionStorage.setItem("apellido", apellidoPaciente);
-
-    agregarPaciente(nombrePaciente, apellidoPaciente);
-
-});
-
-function agregarPaciente(nombre, apellido) {
-    const paciente1 = {
-        nombre,
-        apellido,
-    };
-    arrayPaciente.push(paciente1);
-    mostrarEspecialidades()
-}
-
-
+const arrayPaciente = []
 const especialidades = ["Clinica Medica", "Ginecologia", "Traumatologia", "Cirugia General", "Urologia"]
 const dias = ["Lunes", "Martes","Miercoles", "Jueves", "Viernes"]
 const horarios = [`8.00`, "8.30", "9.00", "9.30", "10.00", "10.30", "11.00", "11.30", "12.00"]
@@ -50,14 +24,44 @@ const medicos = [
         especialidad: "UROLOGIA",
     }
 ]
+const tunroOtorgado=[]
+
+
+
+//----------------------obtecion datos paciente-----------------//
+let formulario = document.getElementById("datosPaciente");
+
+formulario.addEventListener("submit", function (e) {
+    e.preventDefault()
+
+    nombrePaciente = document.getElementById("nombre").value;
+    apellidoPaciente = document.getElementById("apellido").value;
+
+    sessionStorage.setItem("nombre", nombrePaciente);
+    sessionStorage.setItem("apellido", apellidoPaciente);
+
+    agregarPaciente(nombrePaciente, apellidoPaciente);
+
+});
+
+function agregarPaciente(nombre, apellido) {
+    const paciente1 = {
+        nombre,
+        apellido,
+    };
+    arrayPaciente.push(paciente1);
+    tunroOtorgado.push(paciente1);
+    mostrarEspecialidades()
+}
 
 function mostrarEspecialidades () {
 
 if (arrayPaciente.length > 0) {
 
 let ulEspecialidad = document.getElementById("listaEspecialidad");
+let spanEspecialidad = document.getElementById("spanEspecialidad");
 
-ulEspecialidad.innerHTML = "<h3>Seleccione una especialidad</h3><br>"
+spanEspecialidad.innerHTML = `Bienvenido ${nombrePaciente.toUpperCase()} ${apellidoPaciente.toUpperCase()} , seleccione una especialidad para la que necesite gestionar un turno<br><br>` 
 
 especialidades.forEach(function(especialidad,index) {
     let selectEspecialidad = document.createElement("input");
@@ -73,6 +77,67 @@ especialidades.forEach(function(especialidad,index) {
     ulEspecialidad.appendChild(document.createElement("br"));
 });
 }}
+
+
+//---------------------------------selecion de dia segun especialidad----------------------// 
+
+let seleccion1 = document.getElementById("listaEspecialidad");
+
+seleccion1.addEventListener("change", function (e) {
+    // e.preventDefault()
+
+    if (e.target.type === "radio") {
+        especialidadSelecionada = e.target.value[especialidades];
+
+    sessionStorage.setItem("especialidad", especialidadSelecionada);
+
+    agregarEspecialidad(especialidadSelecionada);
+
+    console.log(especialidadSelecionada)
+
+}});
+
+
+function agregarEspecialidad(especialidad) {
+    especialidadSelecionada = {
+        especialidad
+        };
+    tunroOtorgado.push(especialidad);
+    seleccionDia()
+}
+
+
+
+
+function seleccionDia () {
+
+    if (especialidadSelecionada != undefined) {
+
+let ulDia = document.getElementById("listaDias");
+
+let spanDia = document.getElementById("spanDia");
+spanDia.innerHTML = `Por favor seleccione un Dia disponible para su un turno en <br><br>` 
+
+dias.forEach(function(dias,index) {
+    let selectDia = document.createElement("input");
+    selectDia.type= "radio";
+    selectDia.name= "especialidad";
+    selectDia.value= "especialidad" + (index + 1);
+
+    let label = document.createElement("label");
+    label.textContent= dias;
+
+    ulDia.appendChild(selectDia);
+    ulDia.appendChild(label);
+    ulDia.appendChild(document.createElement("br"));
+});
+}}
+
+
+
+
+
+
 
 
 

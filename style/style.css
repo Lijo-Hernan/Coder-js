@@ -5,9 +5,44 @@
   font-family: montserrat, serif;
 }
 
-h1 {
+h1, h2 {
   display: flex;
   justify-content: center;
+}
+
+.formu1 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 3vh;
+  gap: 3vh;
+}
+.formu1__datos {
+  display: flex;
+  margin: 2vh;
+  gap: 1vh;
+  padding: 2vh;
+}
+.formu1__ingreso {
+  display: flex;
+  gap: 4vh;
+}
+.formu1__submit {
+  font-size: 2rem;
+}
+.formu1__reset {
+  font-size: 1.5rem;
+}
+
+.listaEspecialidad {
+  margin: 3.5vh;
+  border: red solid;
+  list-style: none;
+}
+
+.listaDias {
+  margin: 3.5vh;
+  border: green solid;
 }
 
 /*# sourceMappingURL=style.css.map */
