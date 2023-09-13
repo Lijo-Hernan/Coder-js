@@ -45,4 +45,14 @@ h1, h2 {
   border: green solid;
 }
 
+.listaHorarios {
+  margin: 3.5vh;
+  border: blue solid;
+}
+
+.turno {
+  margin: 3.5vh;
+  border: black solid;
+}
+
 /*# sourceMappingURL=style.css.map */
