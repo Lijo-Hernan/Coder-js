@@ -5,6 +5,56 @@
   font-family: montserrat, serif;
 }
 
+.header {
+  background: linear-gradient(to right, #fcd10c, #fcd10c 40%, #aadac3 70%, #00b9f2 100%);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.header__img {
+  justify-self: left;
+  padding-left: 5px;
+  height: 15vh;
+  object-fit: fill;
+  overflow: hidden;
+  margin-right: 22%;
+}
+.header__titles {
+  display: flex;
+  flex-direction: column;
+  margin-left: center;
+  align-items: center;
+}
+.header__mainTitle {
+  padding: 1rem;
+  font-size: 6vh;
+}
+.header__h2 {
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header__img {
+    width: 20vh;
+    object-fit: contain;
+    width: 100%;
+    margin-right: 0;
+    padding: 0;
+  }
+  .header__mainTitle {
+    font-size: 6vw;
+    text-align: center;
+  }
+  .header__h2 {
+    font-size: 6vw;
+    text-align: center;
+  }
+}
 h1, h2 {
   display: flex;
   justify-content: center;
@@ -15,17 +65,31 @@ h1, h2 {
   align-items: center;
   flex-direction: column;
   padding: 3vh;
-  gap: 3vh;
+}
+.formu1__caja {
+  background-color: #2DBFFF;
+  width: 95%;
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px;
+  border: solid rgb(119, 119, 119) 2px;
+  border-radius: 2vw;
 }
 .formu1__datos {
   display: flex;
-  margin: 2vh;
-  gap: 1vh;
+  justify-content: center;
+  margin-top: 2vh;
+  gap: 6vh;
   padding: 2vh;
+  font-size: 1rem;
+  width: 100%;
 }
 .formu1__ingreso {
   display: flex;
-  gap: 4vh;
+  padding: 2vh;
+  width: 100%;
+  justify-content: center;
+  gap: 7%;
+  flex-wrap: wrap;
 }
 .formu1__submit {
   font-size: 2rem;
@@ -34,25 +98,64 @@ h1, h2 {
   font-size: 1.5rem;
 }
 
-.listaEspecialidad {
+.lista {
+  display: none;
+  justify-content: space-evenly;
+}
+.lista__Especialidad {
   margin: 3.5vh;
-  border: red solid;
+  padding: 5vh;
   list-style: none;
+  box-shadow: 3px 3px 10px;
+  border: solid rgb(119, 119, 119) 2px;
+  border-radius: 2vw;
+}
+.lista__Dias {
+  margin: 3.5vh;
+  padding: 5vh;
+  box-shadow: 3px 3px 10px;
+  border: solid rgb(119, 119, 119) 2px;
+  border-radius: 2vw;
+}
+.lista__Horarios {
+  margin: 3.5vh;
+  padding: 5vh;
+  box-shadow: 3px 3px 10px;
+  border: solid rgb(119, 119, 119) 2px;
+  border-radius: 2vw;
 }
 
-.listaDias {
-  margin: 3.5vh;
-  border: green solid;
+.final {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  flex-wrap: wrap;
+  margin: 8vh;
 }
-
-.listaHorarios {
+.final__turno {
+  font-size: 4rem;
+  padding: 3vh;
+  flex-wrap: wrap;
   margin: 3.5vh;
-  border: blue solid;
-}
-
-.turno {
-  margin: 3.5vh;
+  width: 70%;
+  height: fit-content;
   border: black solid;
+  box-shadow: 3px 3px 10px;
+  border: solid rgb(119, 119, 119) 2px;
+  border-radius: 2vw;
+  background-color: rgb(81, 81, 82);
+  color: aliceblue;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+  .lista {
+    flex-direction: column;
+  }
+  .final__turno {
+    margin: 0;
+    font-size: 1.5rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
