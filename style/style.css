@@ -5,6 +5,12 @@
   font-family: montserrat, serif;
 }
 
+body {
+  background-image: url(../multimedia/bkgdd.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .header {
   background: linear-gradient(to right, #fcd10c, #fcd10c 40%, #aadac3 70%, #00b9f2 100%);
   display: flex;
@@ -14,10 +20,10 @@
 .header__img {
   justify-self: left;
   padding-left: 5px;
-  height: 15vh;
+  height: 18vh;
   object-fit: fill;
   overflow: hidden;
-  margin-right: 22%;
+  margin-right: 10%;
 }
 .header__titles {
   display: flex;
@@ -26,11 +32,19 @@
   align-items: center;
 }
 .header__mainTitle {
-  padding: 1rem;
-  font-size: 6vh;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 7vh;
+  padding: 3vh;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  color: #131313;
+  letter-spacing: 0.15em;
+  text-shadow: 1px -1px 0 #767676, -1px 2px 1px #737272, -2px 4px 1px #767474, -3px 6px 1px #787777, -4px 8px 1px #7b7a7a, -5px 10px 1px #7f7d7d;
 }
 .header__h2 {
   text-align: center;
+  font-size: 5vh;
+  text-shadow: 1px -1px 0 #767676, -1px 2px 1px #737272, -2px 4px 1px #767474;
 }
 
 @media (max-width: 1024px) {
@@ -73,6 +87,10 @@ h1, h2 {
   box-shadow: 3px 3px 10px;
   border: solid rgb(119, 119, 119) 2px;
   border-radius: 2vw;
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.225);
 }
 .formu1__datos {
   display: flex;
@@ -109,6 +127,10 @@ h1, h2 {
   box-shadow: 3px 3px 10px;
   border: solid rgb(119, 119, 119) 2px;
   border-radius: 2vw;
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.225);
 }
 .lista__Dias {
   margin: 3.5vh;
@@ -116,6 +138,10 @@ h1, h2 {
   box-shadow: 3px 3px 10px;
   border: solid rgb(119, 119, 119) 2px;
   border-radius: 2vw;
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.225);
 }
 .lista__Horarios {
   margin: 3.5vh;
@@ -123,6 +149,10 @@ h1, h2 {
   box-shadow: 3px 3px 10px;
   border: solid rgb(119, 119, 119) 2px;
   border-radius: 2vw;
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.225);
 }
 
 .final {
@@ -146,6 +176,10 @@ h1, h2 {
   background-color: rgb(81, 81, 82);
   color: aliceblue;
   flex-wrap: wrap;
+  background: rgba(16, 16, 16, 0.55);
+  -webkit-backdrop-filter: blur(11px);
+  backdrop-filter: blur(11px);
+  border: 1px solid rgba(16, 16, 16, 0.275);
 }
 
 @media (max-width: 1024px) {
