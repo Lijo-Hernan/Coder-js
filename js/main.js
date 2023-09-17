@@ -44,6 +44,10 @@ const medicos = [
 
 let formulario = document.getElementById("datosPaciente");
 
+let especialidadSeleccionada;
+let diaSeleccionado;
+let horaSeleccionada;
+
 formulario.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -68,7 +72,7 @@ function agregarPaciente(nombre, apellido) {
     let displayLista = document.getElementById("lista");
     displayLista.style.display = "flex";
 }
-let especialidadSeleccionada;
+
 
 function mostrarEspecialidades() {
     if (arrayPaciente.length > 0 && turnoOtorgado.length > 0) {
@@ -118,8 +122,6 @@ function agregarEspecialidad(especialidadSeleccionada) {
     seleccionDia();
 }
 
-let diaSeleccionado;
-
 function seleccionDia() {
     if (especialidadSeleccionada != undefined) {
         let ulDia = document.getElementById("listaDias");
@@ -168,8 +170,6 @@ function agregarDia(diaSeleccionado) {
     seleccionHora();
 }
 
-let horaSeleccionada;
-
 function seleccionHora() {
     if (diaSeleccionado != undefined) {
         let ulHora = document.getElementById("listaHorarios");
@@ -216,10 +216,16 @@ function agregarHora(horaSeleccionada) {
     };
     turnoOtorgado.push(horaSeleccionada);
     turnoFinal();
+
+    let turnoAString = JSON.stringify(turnoOtorgado);
+    sessionStorage.setItem("turnoStoreado", turnoAString)
 }
 
 function turnoFinal() {
-    if (horaSeleccionada != undefined) {
+    if (sessionStorage.getItem("turnoStoreado")) {
+
+        turnoRecuperado = JSON.parse(sessionStorage.getItem("turnoStoreado"))
+
         let medicoFiltrado = medicos.filter(
             (medicos) => medicos.servicio === especialidadSeleccionada
         );
@@ -227,9 +233,12 @@ function turnoFinal() {
         let medico = medicoFiltrado.map((medicos) => medicos.dr);
 
         let textoFinal = document.getElementById("turno");
-        textoFinal.innerHTML = `${nombrePaciente.toUpperCase()} ${apellidoPaciente.toUpperCase()}, su turno quedo agendado con: ${medico} de ${especialidadSeleccionada} el dia ${diaSeleccionado} a las ${horaSeleccionada}.`;
+        textoFinal.innerHTML = `${nombrePaciente.toUpperCase()} ${apellidoPaciente.toUpperCase()}, su turno quedo agendado con: ${medico} de ${especialidadSeleccionada} el dia ${diaSeleccionado} a las ${horaSeleccionada}hs.`;
 
         let displayHoras = document.getElementById("listaHorarios");
         displayHoras.style.display = "none";
-    }
+
+    }else {
+            window.location.href = "../index.html";
+        }
 }
