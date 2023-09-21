@@ -120,6 +120,19 @@ function agregarEspecialidad(especialidadSeleccionada) {
     };
     turnoOtorgado.push(especialidadSeleccionada);
     seleccionDia();
+
+    Toastify({
+        text: "Especialidad seleccionada",
+        duration: 2000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+        background: "linear-gradient(to right,  #fcd10c, #00b9f2)",
+        },
+        onClick: function(){}
+        }).showToast();
 }
 
 function seleccionDia() {
@@ -127,7 +140,7 @@ function seleccionDia() {
         let ulDia = document.getElementById("listaDias");
 
         let spanDia = document.getElementById("spanDia");
-        spanDia.innerHTML = `Por favor seleccione un Dia disponible para su un turno en <strong>${especialidadSeleccionada}</strong> <br><br>`;
+        spanDia.innerHTML = `Por favor seleccione un Día disponible para su un turno en <strong>${especialidadSeleccionada}</strong> <br><br>`;
 
         dias.forEach(function (dia, index) {
             let selectDia = document.createElement("input");
@@ -168,6 +181,18 @@ function agregarDia(diaSeleccionado) {
     };
     turnoOtorgado.push(diaSeleccionado);
     seleccionHora();
+    Toastify({
+        text: "Día seleccionado",
+        duration: 1500,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+        background: "linear-gradient(to right, #fcd10c, #00b9f2)",
+        },
+        onClick: function(){}
+        }).showToast();
 }
 
 function seleccionHora() {
@@ -175,7 +200,7 @@ function seleccionHora() {
         let ulHora = document.getElementById("listaHorarios");
 
         let spanHora = document.getElementById("spanHora");
-        spanHora.innerHTML = `Por favor seleccione un Horario disponible para su un turno del dia <strong>${diaSeleccionado}</strong> en <strong>${especialidadSeleccionada}</strong> <br><br>`;
+        spanHora.innerHTML = `Por favor seleccione un Horario disponible para su un turno del día <strong>${diaSeleccionado}</strong> en <strong>${especialidadSeleccionada}</strong> <br><br>`;
 
         horarios.forEach(function (hora, index) {
             let selectHora = document.createElement("input");
@@ -215,10 +240,11 @@ function agregarHora(horaSeleccionada) {
         hora: horaSeleccionada,
     };
     turnoOtorgado.push(horaSeleccionada);
-    turnoFinal();
 
     let turnoAString = JSON.stringify(turnoOtorgado);
-    sessionStorage.setItem("turnoStoreado", turnoAString)
+    sessionStorage.setItem("turnoStoreado", turnoAString);
+    turnoFinal();
+
 }
 
 function turnoFinal() {
@@ -227,13 +253,13 @@ function turnoFinal() {
         turnoRecuperado = JSON.parse(sessionStorage.getItem("turnoStoreado"))
 
         let medicoFiltrado = medicos.filter(
-            (medicos) => medicos.servicio === especialidadSeleccionada
+            (medicos) => medicos.servicio === turnoRecuperado[1].especialidad
         );
 
         let medico = medicoFiltrado.map((medicos) => medicos.dr);
 
         let textoFinal = document.getElementById("turno");
-        textoFinal.innerHTML = `${nombrePaciente.toUpperCase()} ${apellidoPaciente.toUpperCase()}, su turno quedo agendado con: ${medico} de ${especialidadSeleccionada} el dia ${diaSeleccionado} a las ${horaSeleccionada}hs.`;
+        textoFinal.innerHTML = `${nombrePaciente.toUpperCase()} ${apellidoPaciente.toUpperCase()}, su turno quedo agendado con: ${medico} de ${especialidadSeleccionada} el día ${diaSeleccionado} a las ${horaSeleccionada}hs.`;
 
         let displayHoras = document.getElementById("listaHorarios");
         displayHoras.style.display = "none";
