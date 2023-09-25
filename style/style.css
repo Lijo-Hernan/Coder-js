@@ -9,7 +9,7 @@ body {
   background-image: url(../multimedia/fondo.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .header {
@@ -20,7 +20,7 @@ body {
 }
 .header__img {
   justify-self: left;
-  height: 18vh;
+  height: 20vh;
   object-fit: fill;
   overflow: hidden;
   padding-left: 5px;
@@ -79,9 +79,19 @@ body {
     text-align: center;
   }
 }
-h1, h2 {
+h1,
+h2 {
   display: flex;
   justify-content: center;
+}
+
+.separador {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.separador__span {
+  margin-top: -1.5vh;
 }
 
 .formu1 {
@@ -125,12 +135,40 @@ h1, h2 {
   font-size: 1.5rem;
 }
 
-.lista {
+.calendarBox {
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  padding: 3vh;
+}
+.calendarBox__cont {
+  box-shadow: 3px 3px 10px;
+  border: solid rgb(119, 119, 119) 2px;
+  border-radius: 2vw;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.225);
+  color: #000000;
+  font-weight: bold;
+  width: 80%;
+  padding: 5vh;
+}
+.calendarBox__calendar {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  width: 100%;
+  padding: 8vh;
+  --fc-border-color: #000000;
+}
+
+.lista1 {
   display: none;
   justify-content: space-evenly;
   font-weight: bold;
 }
-.lista__Especialidad {
+.lista1__Especialidad {
   margin: 3.5vh;
   padding: 5vh;
   list-style: none;
@@ -142,18 +180,13 @@ h1, h2 {
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.225);
 }
-.lista__Dias {
-  margin: 3.5vh;
-  padding: 5vh;
-  box-shadow: 3px 3px 10px;
-  border: solid rgb(119, 119, 119) 2px;
-  border-radius: 2vw;
-  background: rgba(255, 255, 255, 0.55);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.225);
+
+.lista2 {
+  display: none;
+  justify-content: space-evenly;
+  font-weight: bold;
 }
-.lista__Horarios {
+.lista2__Horarios {
   margin: 3.5vh;
   padding: 5vh;
   box-shadow: 3px 3px 10px;
@@ -166,18 +199,33 @@ h1, h2 {
 }
 
 .final {
-  display: flex;
+  display: none;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: auto;
   flex-wrap: wrap;
   margin: 8vh;
+  animation: scale-in-center 1s ease-in both;
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 .final__turno {
   font-size: 4rem;
   padding: 3vh;
   flex-wrap: wrap;
   margin: 3.5vh;
-  width: 70%;
+  width: 80%;
   height: fit-content;
   border: black solid;
   box-shadow: 3px 3px 10px;
@@ -193,6 +241,10 @@ h1, h2 {
   text-align: center;
 }
 
+.nuevoTurno {
+  font-size: 2rem;
+}
+
 @media (max-width: 1024px) {
   .lista {
     flex-direction: column;
@@ -202,6 +254,48 @@ h1, h2 {
     font-size: 1.5rem;
     margin: 0.5ch;
     width: 95%;
+  }
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #7e7e7c;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+  animation: pulse 1s linear infinite;
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #7e7e7c;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: scaleUp 1s linear infinite;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  60%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes pulse {
+  0%, 60%, 100% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(1.2);
   }
 }
 
