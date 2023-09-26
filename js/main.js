@@ -1,5 +1,13 @@
 const arrayPaciente = [];
-const turnoOtorgado = [];
+const turnoOtorgado = {
+    nombre:"",
+    apellido:"",
+    especialidad:"",
+    medico:"",
+    fecha:"",
+    hora:"",
+};
+const variosTurnos = [];
 const especialidades = [
     "Clinica Medica",
     "Ginecologia",
@@ -65,31 +73,36 @@ formulario.addEventListener("submit", function (e) {
 });
 
 function agregarPaciente(nombre, apellido) {
-    const paciente1 = {
-        nombre,
-        apellido,
-    };
-    arrayPaciente.push(paciente1);
-    turnoOtorgado.push(paciente1);
-    let displayLista = document.getElementById("lista1");
-    displayLista.style.display = "flex";
+    turnoOtorgado.nombre = nombre;
+    turnoOtorgado.apellido = apellido;
+
+
 }
 
 function tagPaciente() {
-    plantillaPcte.innerHTML = `Bienvenindo ${nombrePaciente.toUpperCase()} ${apellidoPaciente.toUpperCase()}`;
-    mostrarEspecialidades()
+    plantillaPcte.innerHTML = `Bienvenindo ${turnoOtorgado.nombre.toUpperCase()} ${turnoOtorgado.apellido.toUpperCase()}`;
+    
+    let displayLista = document.getElementById("lista1");
+    displayLista.style.display = "flex";
+
+    mostrarEspecialidades();
 }
 
+
 function mostrarEspecialidades() {
-    if ((arrayPaciente.length > 0 && turnoOtorgado.length > 0)) {
-        let ulEspecialidad = document.getElementById("listaEspecialidad");
-        let spanEspecialidad = document.getElementById("spanEspecialidad");
 
-        spanEspecialidad.innerHTML = `<span class="loader"></span>`;
+    if ((turnoOtorgado.nombre != undefined && turnoOtorgado.apellido != undefined)) {
+    let ulEspecialidad = document.getElementById("listaEspecialidad");
+    let spanEspecialidad = document.getElementById("spanEspecialidad");
+    ulEspecialidad.innerHTML="";
+    
+    spanEspecialidad.innerHTML = `<span class="loader"></span>`;
+    
+    setTimeout(() => {
 
-        setTimeout(() => {
-            spanEspecialidad.innerHTML = `Seleccione una especialidad para la que necesite gestionar un turno<br><br>`;
-            especialidades.forEach(function (especialidad, index) {
+        spanEspecialidad.innerHTML = `Seleccione una especialidad para la que necesite gestionar un turno<br><br>`;
+    
+        especialidades.forEach(function (especialidad, index) {
                 let selectEspecialidad = document.createElement("input");
                 selectEspecialidad.type = "radio";
                 selectEspecialidad.id = `especialidad` + index;
@@ -118,19 +131,26 @@ function mostrarEspecialidades() {
                 });
             });
         }, 1500);
+
         let displayLista = document.getElementById("datosPaciente");
         displayLista.style.display = "none";
     }
-}
+} 
 
 function agregarEspecialidad(especialidadSeleccionada) {
-    especialidadSeleccionada = {
-        especialidad: especialidadSeleccionada,
-    };
-    turnoOtorgado.push(especialidadSeleccionada);
+
+    turnoOtorgado.especialidad = especialidadSeleccionada;
     seleccionDia();
-    let calendario = document.getElementById("calendarBox")
-    calendario.style.display = "flex"
+
+    let loaderCal = document.getElementById("cajaLoader");
+    loaderCal.style.display="flex";
+
+    setTimeout(() => {
+    loaderCal.style.display="none";
+    let calendario = document.getElementById("calendarBox");
+    calendario.style.display = "flex";
+    calendar.updateSize();
+    },1500)
 
 
     Toastify({
@@ -151,18 +171,15 @@ function agregarEspecialidad(especialidadSeleccionada) {
 function seleccionDia() {
     if (especialidadSeleccionada != undefined) {
 
-        let displayEspecialidad = document.getElementById("listaEspecialidad");
+        let displayEspecialidad = document.getElementById("lista1");
         displayEspecialidad.style.display = "none";
-
-
     }
 }
 
-function agregarDia(fechaSinHorario) {
-    diaSeleccionado = {
-        fecha: fechaSinHorario
-    }
-    turnoOtorgado.push(diaSeleccionado);
+function agregarDia() {
+
+    turnoOtorgado.fecha = fechaSinHorario;
+
     let displayHoras = document.getElementById("lista2");
     displayHoras.style.display = "flex";
     seleccionHora();
@@ -183,9 +200,10 @@ function agregarDia(fechaSinHorario) {
 
 
 function seleccionHora() {
-    if (turnoOtorgado.length == 3) {
+
         let ulHora = document.getElementById("listaHorarios");
         let spanHora = document.getElementById("spanHora");
+        ulHora.innerHTML="";
         spanHora.innerHTML = `<span class="loader"></span>`
 
         setTimeout(() => {
@@ -222,19 +240,17 @@ function seleccionHora() {
         }, 1500);
         let displayDias = document.getElementById("calendarBox");
         displayDias.style.display = "none";
-    }
 }
 
 function agregarHora(horaSeleccionada) {
-    horaSeleccionada = {
-        hora: horaSeleccionada,
-    };
-    turnoOtorgado.push(horaSeleccionada);
+
+    turnoOtorgado.hora = horaSeleccionada;
+
+
 
     let turnoAString = JSON.stringify(turnoOtorgado);
     sessionStorage.setItem("turnoStoreado", turnoAString);
     turnoFinal();
-
 }
 
 function turnoFinal() {
@@ -243,10 +259,12 @@ function turnoFinal() {
         turnoRecuperado = JSON.parse(sessionStorage.getItem("turnoStoreado"))
 
         let medicoFiltrado = medicos.filter(
-            (medicos) => medicos.servicio === turnoRecuperado[1].especialidad
+            (medicos) => medicos.servicio === turnoRecuperado.especialidad
         );
-
+        
         let medico = medicoFiltrado.map((medicos) => medicos.dr);
+
+        turnoOtorgado.medico= medico;
 
         let textoFinal = document.getElementById("turno");
         textoFinal.innerHTML = `${nombrePaciente.toUpperCase()} ${apellidoPaciente.toUpperCase()}, su turno quedo agendado con: ${medico} de ${especialidadSeleccionada} el día ${fechaSinHorario} a las ${horaSeleccionada}hs.`;
@@ -256,17 +274,64 @@ function turnoFinal() {
         let displayTurno = document.getElementById("turnoFinal")
         displayTurno.style.display = "flex"
 
-        const boton = document.createElement("button");
-        boton.textContent = "Solicitar nuevo turno";
-        boton.id = "nuevoTurno";
-        boton.className = "nuevoTurno submit btn btn-dark";
+        const nuevoTurno = {...turnoOtorgado};
+        variosTurnos.push(nuevoTurno);
+        localStorage.setItem("variosTurnos",variosTurnos)
 
-        boton.addEventListener('click', function () {
-            window.location.href = "../index.html"
-        });
-        displayTurno.appendChild(boton);
-
+        botonesDeTrunos();
+        
+        
     } else {
         window.location.href = "../index.html";
-    }
+    };
 }
+
+function botonesDeTrunos() {
+
+        let botones = document.getElementById("botones");
+        botones.innerHTML="";
+
+    const boton1 = document.createElement("button");
+        boton1.textContent = "Solicitar nuevo turno";
+        boton1.id = "nuevoTurno";
+        boton1.className = "nuevoTurno submit btn btn-dark";
+        boton1.onclick = volverArriba;
+
+        const boton2 = document.createElement("button");
+        boton2.textContent = "Ver los turnos reservados";
+        boton2.id = "todosLosTurnos";
+        boton2.className = "todosLosTurno submit btn btn-dark";
+        boton2.onclick = mostrarTurnos;
+        
+
+        botones.appendChild(boton1);
+        botones.appendChild(boton2);
+}
+
+
+function volverArriba () {
+
+    let displayTurno = document.getElementById("turnoFinal")
+    displayTurno.style.display = "none"
+
+    tagPaciente();
+}
+
+
+function mostrarTurnos (){
+
+            let contenedorCard = document.getElementById("turnosAgendados");
+
+            variosTurnos.forEach (function(turno, index) {
+
+            let card = document.createElement("div");
+            card.className = "turno-card";
+            card.textContent = `Turno ${index + 1}: en ${turno.especialidad} con ${turno.medico} el día ${turno.fecha} a ${turno.hora}`;
+        
+            contenedorCard.appendChild(card);
+
+            let displayTurno = document.getElementById("turnoFinal")
+            displayTurno.style.display = "none"
+
+        })
+    };

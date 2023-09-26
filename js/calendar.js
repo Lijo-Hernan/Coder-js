@@ -1,8 +1,10 @@
+let calendar
+
 document.addEventListener('DOMContentLoaded', function() {
 
     let calendarEl = document.getElementById("calendar");
 
-    let calendar = new FullCalendar.Calendar(calendarEl, {
+    calendar = new FullCalendar.Calendar(calendarEl, {
 
         headerToolbar: {
             locale: 'es',
@@ -10,9 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         firstDay: 1,
-        selectable: true,
         locale: 'es',
         selectable: true,
+        selectAllow: function(info) {
+
+            const dia = info.start.getDay();
+            return (dia !== 0 && dia !== 6);
+        },
         editable: false,
         events: [],
 

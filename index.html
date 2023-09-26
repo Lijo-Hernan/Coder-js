@@ -47,10 +47,15 @@
         </div>
     </form>
     <div class="lista1" id="lista1">
-        <ul id="listaEspecialidad" class="lista1__Especialidad">
+        <div class="lista1__Especialidad">
             <span id="spanEspecialidad" class="listaEspecialidad__titulo"></span>
-        </ul>
+            <ul id="listaEspecialidad">
+            </ul>
+        </div>
     </div>
+    <div class="cajaLoader" id="cajaLoader"><span id="loader" class="loader cajaLoader__interior"></span></div>
+
+
     <div class="calendarBox" id="calendarBox">
         <span class="calendarBox__cont" id="calCont">
             <h2>Seleccione un dia de preferencia</h2>
@@ -58,13 +63,17 @@
         </span>
     </div>
     <div class="lista2" id="lista2">
-        <ul id="listaHorarios" class="lista2__Horarios">
-            <span id="spanHora" class="listaHorarios__titulo"></span>
+        <div class="lista2__Horarios">
+        <span id="spanHora" class="listaHorarios__titulo"></span>
+        <ul id="listaHorarios" class="lista2__horas">
         </ul>
+    </div>
     </div>
     <div class="final" id="turnoFinal">
         <h2 id="turno" class="final__turno"></h2>
+        <span id="botones" class="final__botones"></span>
     </div>
+    <div id="turnosAgendados" class="turnosAgendados"></div>
 
 
     <script src="js/calendar.js"></script>
