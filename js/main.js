@@ -98,12 +98,14 @@ function mostrarEspecialidades() {
 }
 
 function error() {
+    let displayHoras = document.getElementById("lista2");
+    displayHoras.style.display = "none";
     let error = document.getElementById ("error")
     spanEspecialidad.innerHTML = ""
     spanHora.innerHTML=""
     error.style.display = "flex"
     error.innerHTML = `<img src="../multimedia/404.jpg">`
-    document.append(error)   
+    document.append(error) 
 }
 
 
@@ -248,7 +250,7 @@ function turnoFinal() {
         variosTurnos.push(nuevoTurno);
 
         botonesDeTrunos();
-    });
+    }).catch(e=>error()); ;
 } else {
     window.location.href = "../index.html";
 }
