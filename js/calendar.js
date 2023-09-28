@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         headerToolbar: {
             locale: 'es',
-            today: 'Hoy'
         },
 
         firstDay: 1,

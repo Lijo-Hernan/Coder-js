@@ -1,0 +1,22 @@
+[
+    {
+        "dr": " Dr. Bruno H.",
+        "servicio": "Clinica Medica"
+    },
+    {
+        "dr": " Dra. Prado S.",
+        "servicio": "Ginecologia"
+    },
+    {
+        "dr": " Dra. Rozas S.",
+        "servicio": "Traumatologia"
+    },
+    {
+        "dr": " Dr. Gilardoni A.",
+        "servicio": "Cirugia General"
+    },
+    {
+        "dr": " Dr. Sassano A.",
+        "servicio": "Urologia"
+    }
+]

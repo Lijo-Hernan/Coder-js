@@ -10,7 +10,8 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   object-fit: cover;
-  height: 100vh;
+  max-width: 100%;
+  height: 100%;
 }
 
 .header {
@@ -149,6 +150,12 @@ h2 {
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.225);
+}
+
+.error {
+  position: absolute;
+  margin-top: -20vh;
+  margin-left: 25%;
 }
 
 .calendarBox {
