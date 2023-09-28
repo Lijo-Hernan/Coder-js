@@ -7,7 +7,6 @@
 
 body {
   background-image: url(../multimedia/fondo.jpg);
-  background-size: cover;
   background-repeat: no-repeat;
   object-fit: cover;
   max-width: 100%;

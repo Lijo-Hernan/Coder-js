@@ -55,7 +55,7 @@ function mostrarEspecialidades() {
 
     setTimeout(() => {
         
-        fetch(`../json/especialidades.json`)
+        fetch(`./json/especialidades.json`)
         .then((response) => response.json())
         .then((data) => {
             
@@ -100,12 +100,12 @@ function mostrarEspecialidades() {
 function error() {
     let displayHoras = document.getElementById("lista2");
     displayHoras.style.display = "none";
-    let error = document.getElementById ("error")
     spanEspecialidad.innerHTML = ""
     spanHora.innerHTML=""
+    let error = document.getElementById ("error")
     error.style.display = "flex"
     error.innerHTML = `<img src="../multimedia/404.jpg">`
-    document.append(error) 
+    document.body.append(error) 
 }
 
 
@@ -174,7 +174,7 @@ function seleccionHora() {
     setTimeout(() => {
     spanHora.innerHTML = `Por favor seleccione un Horario disponible para su un turno del día <strong>${fechaSinHorario}</strong> en <strong>${especialidadSeleccionada}</strong> <br><br>`;
 
-    fetch(`../json/horarios.json`)
+    fetch(`./json/horarios.json`)
     .then((response) => response.json())
     .then((data) => {
         let horarios = data;
@@ -225,7 +225,7 @@ function turnoFinal() {
     if (sessionStorage.getItem("turnoStoreado")) {
     turnoRecuperado = JSON.parse(sessionStorage.getItem("turnoStoreado"));
 
-    fetch(`../json/medicos.json`)
+    fetch(`./json/medicos.json`)
     .then((response) => response.json())
     .then((data) => {
         let medicos = data;
